@@ -1,158 +1,154 @@
 //
-//  UITextView+BlocksKit.h
+//  UITextField+BlocksKit.m
 //  BlocksKit
 //
 
-#import "UITextView+BlocksKit.h"
+#import "UITextField+BlocksKit.h"
 #import "A2DynamicDelegate.h"
 #import "NSObject+A2BlockDelegate.h"
 
 #pragma mark Delegate
 
-@interface A2DynamicUITextViewDelegate : A2DynamicDelegate
+@interface A2DynamicUITextFieldDelegate : A2DynamicDelegate
 
 @end
 
-@implementation A2DynamicUITextViewDelegate
+@implementation A2DynamicUITextFieldDelegate
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-	BOOL ret = YES;
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)])
-		ret = [realDelegate textViewShouldBeginEditing:textView];
-	BOOL (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(textView);
-	return ret;
+    BOOL ret = YES;
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return ret;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+        ret = [realDelegate textFieldShouldBeginEditing:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewDidBeginEditing:)])
-		[realDelegate textViewDidBeginEditing:textView];
-	void (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		block(textView);
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
+        [realDelegate textFieldDidBeginEditing:textField];
+    void (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        block(textField);
 }
 
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-	BOOL ret = YES;
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewShouldEndEditing:)])
-		ret = [realDelegate textViewShouldEndEditing:textView];
-	BOOL (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(textView);
-	return ret;
+    BOOL ret = YES;
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return ret;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+        ret = [realDelegate textFieldShouldEndEditing:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
+- (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewDidEndEditing:)])
-		[realDelegate textViewDidEndEditing:textView];
-	void (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		block(textView);
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidEndEditing:)])
+        [realDelegate textFieldDidEndEditing:textField];
+    void (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        block(textField);
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	BOOL ret = YES;
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)])
-		ret = [realDelegate textView:textView shouldChangeTextInRange:range replacementText:text];
-	BOOL (^block)(UITextView *, NSRange, NSString *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(textView, range, text);
-	return ret;
+    BOOL ret = YES;
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return ret;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
+        ret = [realDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
+    BOOL (^block)(UITextField *, NSRange, NSString *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField, range, string);
+    return ret;
 }
 
-- (void)textViewDidChange:(UITextView *)textView
+- (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewDidChange:)])
-		[realDelegate textViewDidChange:textView];
-	void (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		block(textView);
+    BOOL ret = YES;
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return ret;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldClear:)])
+        ret = [realDelegate textFieldShouldClear:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
 }
 
-- (void)textViewDidChangeSelection:(UITextView *)textView
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textViewDidChangeSelection:)])
-		[realDelegate textViewDidChangeSelection:textView];
-	void (^block)(UITextView *) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		block(textView);
-}
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange
-{
-	BOOL ret = YES;
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textView:shouldInteractWithTextAttachment:inRange:)])
-		ret = [realDelegate textView:textView shouldInteractWithTextAttachment:textAttachment inRange:characterRange];
-	BOOL (^block)(UITextView *, NSTextAttachment *, NSRange) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(textView, textAttachment, characterRange);
-	return ret;
-}
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
-{
-	BOOL ret = YES;
-	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textView:shouldInteractWithURL:inRange:)])
-		ret = [realDelegate textView:textView shouldInteractWithURL:URL inRange:characterRange];
-	BOOL (^block)(UITextView *, NSURL *, NSRange) = [self blockImplementationForMethod:_cmd];
-	if (block)
-		ret &= block(textView, URL, characterRange);
-	return ret;
+    BOOL ret = YES;
+    id realDelegate = self.realDelegate;
+    //添加代码
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return ret;
+    }
+    //end
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldReturn:)])
+        ret = [realDelegate textFieldShouldReturn:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
 }
 
 @end
 
 #pragma mark - Category
 
-@implementation UITextView (BlocksKit)
+@implementation UITextField (BlocksKit)
 
-@dynamic bk_shouldBeginEditingBlock, bk_didBeginEditingBlock, bk_shouldEndEditingBlock, bk_didEndEditingBlock, bk_shouldChangeCharactersInRangeWithReplacementTextBlock, bk_didChangeBlock, bk_didChangeSelecionBlock, bk_shouldInteractWithTextAttachmentInRangeBlock, bk_shouldInteractWithURLInRangeBlock;
+@dynamic bk_shouldBeginEditingBlock, bk_didBeginEditingBlock, bk_shouldEndEditingBlock, bk_didEndEditingBlock, bk_shouldChangeCharactersInRangeWithReplacementStringBlock, bk_shouldClearBlock, bk_shouldReturnBlock;
 
 + (void)load {
-	[self bk_registerDynamicDelegate];
-	[self bk_linkDelegateMethods: @{
-									@"bk_shouldBeginEditingBlock":
-										@"textViewShouldBeginEditing:",
-									
-									@"bk_didBeginEditingBlock":
-										@"textViewDidBeginEditing:",
-									
-									@"bk_shouldEndEditingBlock":
-										@"textViewDidBeginEditing:",
-									
-									@"bk_didEndEditingBlock" :
-										@"textViewDidEndEditing:",
-									
-									@"bk_shouldChangeCharactersInRangeWithReplacementTextBlock" :
-										@"textView:shouldChangeTextInRange:replacementText:",
-									
-									@"bk_didChangeBlock" :
-										@"textViewDidChange:",
-									
-									@"bk_didChangeSelecionBlock" :
-										@"textViewDidChangeSelection:",
-									
-									@"bk_shouldInteractWithTextAttachmentInRangeBlock" :
-										@"textView:shouldInteractWithTextAttachment:inRange:",
-									
-									@"bk_shouldInteractWithURLInRangeBlock" :
-										@"textView:shouldInteractWithURL:inRange:",
-									}];
+    [self bk_registerDynamicDelegate];
+    [self bk_linkDelegateMethods: @{
+                                    @"bk_shouldBeginEditingBlock": @"textFieldShouldBeginEditing:",
+                                    @"bk_didBeginEditingBlock": @"textFieldDidBeginEditing:",
+                                    @"bk_shouldEndEditingBlock": @"textFieldShouldEndEditing:",
+                                    @"bk_didEndEditingBlock" : @"textFieldDidEndEditing:",
+                                    @"bk_shouldChangeCharactersInRangeWithReplacementStringBlock" : @"textField:shouldChangeCharactersInRange:replacementString:",
+                                    @"bk_shouldClearBlock" : @"textFieldShouldClear:",
+                                    @"bk_shouldReturnBlock" : @"textFieldShouldReturn:",
+                                    }];
 }
 
 @end
